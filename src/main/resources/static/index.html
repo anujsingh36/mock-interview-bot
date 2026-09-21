@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sit Down &amp; Talk — Mock Interview Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark">tk.</span>
+    <span class="brand-text">the kitchen-table interview</span>
+  </div>
+  <nav id="nav" class="nav hidden">
+    <button class="linkish" data-go="setup">New interview</button>
+    <button class="linkish" data-go="history">My past rounds</button>
+    <span class="who" id="who"></span>
+    <button class="linkish quiet" id="signout">Sign out</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ---------------- AUTH ---------------- -->
+  <section id="view-auth" class="view">
+    <div class="hero">
+      <p class="eyebrow">practice out loud, before it counts</p>
+      <h1>Nobody's first interview<br /><em>should be a real one.</em></h1>
+      <p class="lede">
+        Pick a topic. Answer five questions the way you actually would — messy, half-remembered, honest.
+        You'll get a score and a straight answer about what to fix. That's it.
+      </p>
+    </div>
+
+    <div class="card auth-card">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">I've been here</button>
+        <button class="tab" data-tab="register">I'm new</button>
+      </div>
+
+      <form id="form-login" class="stack">
+        <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+        <label>Password<input type="password" name="password" autocomplete="current-password" required /></label>
+        <button class="primary" type="submit">Let me in</button>
+      </form>
+
+      <form id="form-register" class="stack hidden">
+        <label>What should I call you?<input type="text" name="name" autocomplete="name" required /></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+        <label>Password <span class="hint">at least 6 characters</span>
+          <input type="password" name="password" autocomplete="new-password" required />
+        </label>
+        <button class="primary" type="submit">Make me an account</button>
+      </form>
+
+      <p class="error" id="auth-error"></p>
+    </div>
+  </section>
+
+  <!-- ---------------- SETUP ---------------- -->
+  <section id="view-setup" class="view hidden">
+    <h2 class="page-title">So — what are we practising today?</h2>
+    <p class="sub" id="greeting"></p>
+
+    <div class="card">
+      <p class="label">Topic</p>
+      <div class="chips" id="topic-chips"></div>
+      <label class="mt">Or type your own
+        <input type="text" id="topic-custom" placeholder="e.g. Multithreading in Java" />
+      </label>
+
+      <p class="label mt">How hard should I go?</p>
+      <div class="chips" id="level-chips">
+        <button class="chip active" data-level="beginner">Go easy on me</button>
+        <button class="chip" data-level="intermediate">Normal</button>
+        <button class="chip" data-level="advanced">Make me sweat</button>
+      </div>
+
+      <button class="primary mt" id="start-btn">Start the round</button>
+      <p class="error" id="setup-error"></p>
+    </div>
+  </section>
+
+  <!-- ---------------- INTERVIEW ---------------- -->
+  <section id="view-interview" class="view hidden">
+    <div class="progress-line">
+      <span id="progress-text"></span>
+      <div class="dots" id="progress-dots"></div>
+    </div>
+
+    <div class="card question-card">
+      <p class="speaker">Interviewer</p>
+      <p class="question" id="question-text"></p>
+    </div>
+
+    <form id="answer-form" class="card">
+      <label class="block">Your answer
+        <textarea id="answer-text" rows="7" placeholder="Say it how you'd say it in the room. Half-remembered is fine — that's the point."></textarea>
+      </label>
+      <div class="row">
+        <button class="primary" type="submit" id="submit-answer">Send it</button>
+        <span class="thinking hidden" id="thinking">reading your answer…</span>
+      </div>
+      <p class="error" id="interview-error"></p>
+    </form>
+
+    <div id="feedback-list"></div>
+  </section>
+
+  <!-- ---------------- RESULT ---------------- -->
+  <section id="view-result" class="view hidden">
+    <div class="card result-card">
+      <p class="eyebrow">that's the round</p>
+      <div class="score-big"><span id="final-score">0</span><small>/10 average</small></div>
+      <p class="summary" id="final-summary"></p>
+      <div class="row mt">
+        <button class="primary" data-go="setup">Another round</button>
+        <button class="linkish" data-go="history">See all my rounds</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- HISTORY ---------------- -->
+  <section id="view-history" class="view hidden">
+    <h2 class="page-title">Everything you've sat through</h2>
+    <p class="sub">Watching the numbers climb is the whole reward.</p>
+    <div id="history-list" class="stack"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built with Spring Boot, MySQL and Google Gemini. Your answers stay in your own database.</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
